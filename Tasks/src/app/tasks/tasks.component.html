@@ -1,0 +1,61 @@
+<div id = "main">
+  <div id = "tasknew">
+    <form (submit) = "createTask()" #taskData = "ngForm">
+      <span *ngIf = "task.invalid && (task.dirty || task.touched)" >
+        <span *ngIf = "task.errors.minlength">Task must be at least 5 characters long</span>
+      </span><br/>
+      Task: 
+      <input type = "text" name = "task" [(ngModel)] = "newTask.task" #task = "ngModel"
+        ngModel required minlength = "5" size = "40" placeholder = "Add a task..."/>
+  
+      <input type = "submit" value = "Create task" 
+      class = "btn btn-success" [disabled] = "taskData.form.invalid"/>
+    </form>
+  </div>
+
+  <div id = "greyline"></div>
+
+  <div id = "tasklist">
+    <h3>Task List</h3><br/>
+
+    <table class = "table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope = "col">ID</th>
+          <th scope = "col">Task Name</th>
+          <th scope = "col">Date Created</th>
+          <th scope = "col">Date Updated</th>
+          <th scope = "col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let task of tasks; index as i">
+          <td>{{i + 1}}</td>
+          <td>{{task.task}}</td>
+          <td>{{task.created_at | date: "short"}}</td>
+          <td>{{task.updated_at | date: "short"}}</td>
+          <td>
+            <button class = "btn btn-primary" (click) = "getSingleTask(task)">Edit</button>
+            <button class = "btn btn-secondary" (click) = "deleteTask(task)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id = "edittask" *ngIf = "show">
+    <h3>Edit Task</h3>
+    <form (submit) = "editSingleTask()" #taskData = "ngForm">
+      <span *ngIf = "task.invalid && (task.dirty || task.touched)" >
+        <span *ngIf = "task.errors.minlength">Task must be at least 5 characters long</span>
+      </span><br/>
+
+      <input type = "text" name = "task" [(ngModel)] = "editTask.task" #task = "ngModel"
+        ngModel required minlength = "5" size = "40" placeholder = "Edit task..."/>
+  
+      <input type = "submit" value = "Save Edit" 
+      class = "btn btn-info" [disabled] = "taskData.form.invalid"/>
+    </form>
+    <button class = "btn btn-secondary" (click) = "cancel()">Cancel</button>
+  </div>
+</div>

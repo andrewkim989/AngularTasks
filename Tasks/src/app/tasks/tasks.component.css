@@ -1,0 +1,36 @@
+#tasknew {
+    margin: 10px;
+    padding: 15px;
+    padding-top: 0px;
+    padding-left: 70px;
+}
+#tasknew span, #edittask span {
+    color:rgb(212, 42, 42);
+}
+input {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+input[type = "submit"] {
+    margin-left: 15px;
+}
+#greyline {
+    height: 2px;
+    background-color: grey;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#tasklist {
+    margin-left: 60px;
+    margin-right: 40px;
+}
+#tasklist button {
+    margin-left: 5px;
+}
+#edittask {
+    margin: auto;
+    padding: 15px;
+    background-color: rgb(172, 193, 238);
+    border-radius: 10px;
+    width: 500px;
+}
